@@ -22,3 +22,15 @@ def test_generate_invalid_input():
     }
     response = client.post("/generate",json =payload)
     assert response.status_code == 422
+
+def test_generate_endpoint_valid():
+
+    payload = {
+            "prompt": "Test prompt",
+            "max_token": 50,
+            "temperature": 0.7
+        }
+    response = client.post("/generate",json=payload)
+
+    assert response.status_code == 200
+    assert response.headers["contnet-type"] =="text/event-stream"
