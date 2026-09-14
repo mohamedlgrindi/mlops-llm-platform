@@ -1,0 +1,11 @@
+replicaCount: 2
+
+image: 
+  repository: mlops-llm-platform
+  tag: v1
+  pullPolicy: Never
+
+service:
+  type: NodePort
+  port: 8000
+  nodePort: 30080 

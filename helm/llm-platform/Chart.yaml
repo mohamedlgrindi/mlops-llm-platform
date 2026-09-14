@@ -1,0 +1,9 @@
+apiVersion: v2
+
+name: llm-platform
+
+description: helm chart for Enterprise MLOps LLM Serving platform
+
+version: 0.1.0
+
+appVersion: "1.0.0"

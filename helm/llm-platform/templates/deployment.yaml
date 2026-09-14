@@ -6,7 +6,7 @@ metadata:
     app: llm-api
 
 spec:
-  replicas: 2
+  replicas: {{.Values.replicaCount}}
   selector:
     matchLabels:
       app: llm-api
@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
       - name: llm-api-container
-        image: mlops-llm-platform:v1
-        imagePullPolicy: Never
+        image: {{.Values.image.repository}}:{{.Values.image.tag}}
+        imagePullPolicy: {{.Values.image.pullPolicy}}
 
         resources:
           requests:
