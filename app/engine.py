@@ -1,6 +1,25 @@
 import asyncio 
 import uuid 
-from app.schemas import PromptRequest
+import httpx
+
+
+class RemotevLLMEgine:
+    def __init__(self, colab_url :str):
+        self.colab_url = colab_url
+
+
+    async def generate(self, prompt: str , max_tokens: int , temperatur: float):
+
+        payload = {"prompt":prompt,
+                   "max_tokens":max_tokens,
+                    "temperature":temperatur
+                   }
+
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            async with client.stream("POST",self.colab_url, json=payload) as response:
+                async for line in response.aiter_lines():
+                    if line:
+                        yield f"{line}\n\n"
 
 
 class MockLLMEngine:

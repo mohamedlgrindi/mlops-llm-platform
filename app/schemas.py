@@ -10,7 +10,7 @@ class HealthResponse(BaseModel):
 
 class PromptRequest(BaseModel):
     """Schema for incoming LLM text generation requests."""
-    
+
     prompt: str = Field(...,description="User prompt")
-    max_token: int = Field(default=128 , ge= 1 , le = 1024)
+    max_tokens: int = Field(default=128 , ge= 1 , le = 1024)
     temperature: float = Field(default=0.7, ge=0.0, le=2.0)
